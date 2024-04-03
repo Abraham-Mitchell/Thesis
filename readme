@@ -1,0 +1,8 @@
+Uhhh some mo gps. RTK gps system. Commonly used in robot yard type settings. 
+actually maybe dgps. less accurate but less prone to systemic errors. 
+https://ieeexplore.ieee.org/abstract/document/4290370?casa_token=WNjHHWQqBigAAAAA:K0VVN11nVWRtlw4ggWQnY0As7Ya0r7YbHZz24aDfoHu-x_-vqGkKC2HlBEz_pTbTtCDU6SeiKQA
+
+link to paper which state the dgps performs better with tree shading, meaning imo more applicable for a variety of settings
+
+accuracy of about 1 to 3 meters; results of paper get 0.91m average error, so round to 3 feet
+https://ieeexplore.ieee.org/document/9737758/figures#figures
