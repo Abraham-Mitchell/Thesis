@@ -4,8 +4,14 @@ import math
 
 steps = []
 error_scale = 0.3  # Scale for movement error
-localization_error_mean = 3.0  # Mean of the localization error in feet
-localization_error_std = 1.0  # Standard deviation to approximate a 2-6 feet range
+# localization_error_mean = 3.0  # Mean of the localization error in feet
+# localization_error_std = 1.0  # Standard deviation to approximate a 2-6 feet range
+
+localization_error_mean = 0.561351708333 #0.56ft or 17.11cm
+
+# #stdv for x and y
+localization_error_stdx = 0.4015748 #12.24cm
+localization_error_stdy = 0.70603675 #21.52cm
 number_of_steps = 50
 actual_trials = []
 num_trials = 1
@@ -38,17 +44,26 @@ for i in range(num_trials):
 
         # Apply correction based on last localized position vs. target position
         correction = target_pos - np.array(localized_position[-1])
-        correction_norm = correction / np.linalg.norm(correction) if np.linalg.norm(correction) > 0 else correction
+        # correction_norm = correction / np.linalg.norm(correction) if np.linalg.norm(correction) > 0 else correction
+        
+        #NOT using a normalized vector
+        correction_norm = correction
 
         # Actual movement including error and correction
         next_pos = np.array(actual_location[-1]) + correction_norm + np.array([error_x, error_y])
 
+        #not using correction norm
+        # next_pos = np.array(actual_location[-1]) + np.array([error_x, error_y])
+
         actual_location.append(next_pos.tolist())
 
         # Localization with error
-        loc_error = np.random.normal(loc=localization_error_mean, scale=localization_error_std, size=2)
-        localized_x = next_pos[0] + loc_error[0] * math.cos(math.radians(angle))
-        localized_y = next_pos[1] + loc_error[1] * math.sin(math.radians(angle))
+        loc_errorx = np.random.normal(loc=localization_error_mean, scale=localization_error_stdx, size=2)
+        loc_errory = np.random.normal(loc=localization_error_mean, scale=localization_error_stdy, size=2)
+        # loc_errorx = np.random.normal(loc=3, scale=1, size=2)
+        # loc_errory = np.random.normal(loc=3, scale=1, size=2)
+        localized_x = next_pos[0] + loc_errorx[0] * math.cos(math.radians(angle))
+        localized_y = next_pos[1] + loc_errory[1] * math.sin(math.radians(angle))
         localized_position.append([localized_x, localized_y])
 
     actual_location = np.array(actual_location).T
