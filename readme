@@ -6,3 +6,7 @@ link to paper which state the dgps performs better with tree shading, meaning im
 
 accuracy of about 1 to 3 meters; results of paper get 0.91m average error, so round to 3 feet
 https://ieeexplore.ieee.org/document/9737758/figures#figures
+
+
+dude bro and his kalman filter lesson plus EKF code
+https://automaticaddison.com/extended-kalman-filter-ekf-with-python-code-example/
